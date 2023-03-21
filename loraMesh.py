@@ -46,6 +46,7 @@ class MeshNode():
 		self.usefulPackets = 0
 		self.txAirUtilization = 0
 		self.airUtilization = 0
+		self.BE = 1
 
 		if not self.isRepeater:  # repeaters don't generate messages themselves
 			env.process(self.generateMessage())
@@ -73,11 +74,12 @@ class MeshNode():
 				self.env.process(self.transmit(p))
 				while p.wantAck: # ReliableRouter: retransmit message if no ACK received after timeout 
 					# retransmissionMsec = getRetransmissionMsec(self, p)
-					retransmissionMsec = conf.NB
+					retransmissionMsec = getClassicRetransmissionMsec(self, p)
 					yield self.env.timeout(retransmissionMsec)
 
 					ackReceived = False  # check whether you received an ACK on the transmitted message
-					minRetransmissions = conf.maxRetransmission
+					# minRetransmissions = conf.maxRetransmission
+					minRetransmissions = conf.NB
 					for packetSent in self.packets:
 						if packetSent.origTxNodeId == self.nodeid and packetSent.seq == p.seq:
 							if packetSent.retransmissions < minRetransmissions:
@@ -106,14 +108,16 @@ class MeshNode():
 			yield request
 
 			# listen-before-talk from src/mesh/RadioLibInterface.cpp 
-			txTime = setTransmitDelay(self, packet) 
+			# txTime = setTransmitDelay(self, packet)\
+			txTime = setClassicTransmitDelay(self)
 			verboseprint('At time', round(self.env.now, 3), 'node', self.nodeid, 'picked wait time', txTime)
 			yield self.env.timeout(txTime)
 
 			# wait when currently receiving or transmitting, or channel is active
 			while any(self.isReceiving) or self.isTransmitting or isChannelActive(self, self.env):
 				verboseprint('At time', round(self.env.now, 3), 'node', self.nodeid, 'is busy Tx-ing', self.isTransmitting, 'or Rx-ing', any(self.isReceiving), 'else channel busy!')
-				txTime = setTransmitDelay(self, packet) 
+				# txTime = setTransmitDelay(self, packet) 
+				txTime = setClassicTransmitDelay(self)
 				yield self.env.timeout(txTime)
 			verboseprint('At time', round(self.env.now, 3), 'node', self.nodeid, 'ends waiting')	
 

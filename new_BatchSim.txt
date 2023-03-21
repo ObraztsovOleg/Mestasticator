@@ -1,0 +1,136 @@
+
+Start of 1 out of 17 value 3
+Saving to file...
+Collision rate average: 16.89
+Reachability average: 99.44
+Usefulness average: 55.58
+Delay average: 4528.16
+Tx air utilization average: 7493.53
+
+Start of 2 out of 17 value 4
+Saving to file...
+Collision rate average: 32.22
+Reachability average: 97.44
+Usefulness average: 60.98
+Delay average: 4161.41
+Tx air utilization average: 9345.25
+
+Start of 3 out of 17 value 5
+Saving to file...
+Collision rate average: 38.94
+Reachability average: 94.2
+Usefulness average: 61.16
+Delay average: 4455.51
+Tx air utilization average: 11703.77
+
+Start of 4 out of 17 value 6
+Saving to file...
+Collision rate average: 44.06
+Reachability average: 92.56
+Usefulness average: 63.55
+Delay average: 4254.23
+Tx air utilization average: 12797.24
+
+Start of 5 out of 17 value 7
+Saving to file...
+Collision rate average: 46.6
+Reachability average: 88.78
+Usefulness average: 63.52
+Delay average: 4465.97
+Tx air utilization average: 14960.25
+
+Start of 6 out of 17 value 8
+Saving to file...
+Collision rate average: 48.61
+Reachability average: 87.04
+Usefulness average: 62.96
+Delay average: 4693.26
+Tx air utilization average: 16226.96
+
+Start of 7 out of 17 value 9
+Saving to file...
+Collision rate average: 51.96
+Reachability average: 83.66
+Usefulness average: 64.9
+Delay average: 4601.97
+Tx air utilization average: 16716.46
+
+Start of 8 out of 17 value 10
+Saving to file...
+Collision rate average: 52.52
+Reachability average: 81.21
+Usefulness average: 63.61
+Delay average: 4930.84
+Tx air utilization average: 18342.54
+
+Start of 9 out of 17 value 12
+Saving to file...
+Collision rate average: 56.67
+Reachability average: 75.67
+Usefulness average: 63.95
+Delay average: 5078.0
+Tx air utilization average: 19899.72
+
+Start of 10 out of 17 value 15
+Saving to file...
+Collision rate average: 60.03
+Reachability average: 69.33
+Usefulness average: 64.42
+Delay average: 5273.73
+Tx air utilization average: 22048.4
+
+Start of 11 out of 17 value 20
+Saving to file...
+Collision rate average: 62.47
+Reachability average: 60.48
+Usefulness average: 61.83
+Delay average: 6120.4
+Tx air utilization average: 24692.55
+
+Start of 12 out of 17 value 25
+Saving to file...
+Collision rate average: 65.38
+Reachability average: 53.12
+Usefulness average: 62.2
+Delay average: 6573.55
+Tx air utilization average: 25808.93
+
+Start of 13 out of 17 value 30
+Saving to file...
+Collision rate average: 66.69
+Reachability average: 47.79
+Usefulness average: 61.56
+Delay average: 6941.46
+Tx air utilization average: 26795.75
+
+Start of 14 out of 17 value 35
+Saving to file...
+Collision rate average: 66.93
+Reachability average: 42.22
+Usefulness average: 60.21
+Delay average: 7388.67
+Tx air utilization average: 27574.46
+
+Start of 15 out of 17 value 40
+Saving to file...
+Collision rate average: 67.51
+Reachability average: 37.92
+Usefulness average: 60.1
+Delay average: 7770.58
+Tx air utilization average: 27779.12
+
+Start of 16 out of 17 value 45
+Saving to file...
+Collision rate average: 67.8
+Reachability average: 34.2
+Usefulness average: 59.77
+Delay average: 7978.94
+Tx air utilization average: 28276.8
+
+Start of 17 out of 17 value 50
+Saving to file...
+Collision rate average: 68.21
+Reachability average: 32.17
+Usefulness average: 59.36
+Delay average: 8317.63
+Tx air utilization average: 28064.78

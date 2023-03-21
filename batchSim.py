@@ -52,6 +52,7 @@ class MeshNode():
 		self.usefulPackets = 0
 		self.txAirUtilization = 0
 		self.airUtilization = 0
+		self.BE = 1
 
 		if not self.isRepeater:  # repeaters don't generate messages themselves
 			env.process(self.generateMessage())
@@ -78,7 +79,7 @@ class MeshNode():
 				self.env.process(self.transmit(p))
 				while p.wantAck: # ReliableRouter: retransmit message if no ACK received after timeout 
 					# retransmissionMsec = getRetransmissionMsec(self, p)
-					retransmissionMsec = getClassicRetransmissionMsec(p)
+					retransmissionMsec = getClassicRetransmissionMsec(self, p)
 					yield self.env.timeout(retransmissionMsec)
 
 					ackReceived = False  # check whether you received an ACK on the transmitted message
@@ -96,7 +97,6 @@ class MeshNode():
 					else:
 						if minRetransmissions > 0:  # generate new packet with same sequence number
 							pNew = MeshPacket(self.nodes, self.nodeid, p.destId, self.nodeid, p.packetLen, p.seq, p.genTime, p.wantAck, False, None)  
-							# pNew.retransmissions = minRetransmissions-1
 							pNew.retransmissions = minRetransmissions-1
 							verboseprint('At time', round(self.env.now, 3), 'node', self.nodeid, 'wants to retransmit its generated packet to', destId, 'with seq.nr.', p.seq, 'minRetransmissions', minRetransmissions)
 							self.packets.append(pNew)							
@@ -114,7 +114,7 @@ class MeshNode():
 
 			# listen-before-talk from src/mesh/RadioLibInterface.cpp 
 			# txTime = setTransmitDelay(self, packet)
-			txTime = setClassicTransmitDelay()
+			txTime = setClassicTransmitDelay(self)
 			verboseprint('At time', round(self.env.now, 3), 'node', self.nodeid, 'picked wait time', txTime)
 			yield self.env.timeout(txTime)
 
@@ -122,7 +122,7 @@ class MeshNode():
 			while any(self.isReceiving) or self.isTransmitting or isChannelActive(self, self.env):
 				verboseprint('At time', round(self.env.now, 3), 'node', self.nodeid, 'is busy Tx-ing', self.isTransmitting, 'or Rx-ing', any(self.isReceiving), 'else channel busy!')
 				# txTime = setTransmitDelay(self, packet) 
-				txTime = setClassicTransmitDelay()
+				txTime = setClassicTransmitDelay(self)
 				yield self.env.timeout(txTime)
 			verboseprint('At time', round(self.env.now, 3), 'node', self.nodeid, 'ends waiting')	
 

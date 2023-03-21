@@ -7,12 +7,9 @@ CWmin = 2
 CWmax = 8
 PROCESSING_TIME_MSEC = 4500
 
-BE = 1
-BEmax = 5
-
-def setClassicTransmitDelay():
-    BE = 1
-    return getClassicTxDelayMsec(BE)
+def setClassicTransmitDelay(node):
+    node.BE = 1
+    return getClassicTxDelayMsec(node.BE)
 
 def setTransmitDelay(node, packet):  # from RadioLibInterface::setTransmitDelay
     for p in reversed(node.packetsAtN[node.nodeid]):
@@ -59,12 +56,12 @@ def getRetransmissionMsec(node, packet):  # from RadioInterface::getRetransmissi
     CWsize = int(channelUtil*(CWmax - CWmin)/100 + CWmin)
     return 2*packetAirtime + (2**CWsize + 2**(int((CWmax+CWmin)/2))) * slotTime + PROCESSING_TIME_MSEC
 
-def getClassicRetransmissionMsec(packet):
+def getClassicRetransmissionMsec(node, packet):
     packetAirtime = int(airtime(conf.SFMODEM[conf.MODEM], conf.CRMODEM[conf.MODEM], packet.packetLen, conf.BWMODEM[conf.MODEM])) 
-    global BE 
-    BE = min(BE + 1, BEmax)
 
-    return 2*packetAirtime + getClassicTxDelayMsec(BE) * slotTime + PROCESSING_TIME_MSEC
+    node.BE = min(node.BE + 1, conf.BEmax)
+
+    return 2*packetAirtime + getClassicTxDelayMsec(node.BE) * slotTime + PROCESSING_TIME_MSEC
 
 
 if VERBOSE:

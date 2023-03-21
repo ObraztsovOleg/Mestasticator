@@ -17,6 +17,9 @@ router = False  # set role of each node as router (True) or normal client (False
 maxRetransmission = 3  # default 3 -- not configurable by Meshtastic
 ### End of Meshtastic specific ###
 NB = 4
+### максимальный показатель отсрочки, связанный с максимальным значением из периодов 
+# отсрочки, которые узел будет ожидать, прежде чем пытаться начать передачу
+BEmax = 5
 
 ### Discrete-event specific ###
 MODEM = 4  # LoRa modem to use: 0 = ShortFast, 1 = Short Slow, ... 6 = Very Long Slow
